@@ -1,4 +1,4 @@
-import {Grid, Card, Typography ,Tabs ,Tab,Box} from '@mui/material'
+import {Grid} from '@mui/material'
 import Das1 from '../../../images/das1.png'
 const LoginReg = () => {
   return (

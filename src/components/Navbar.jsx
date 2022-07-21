@@ -14,9 +14,17 @@ const Navbar = () => {
 
             <Button component={NavLink} to='/' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Home</Button>
 
+            <Button component={NavLink} to='/posts' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Posts</Button>
+
+            <Button component={NavLink} to='/users' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Users</Button>
+
           <Button component={NavLink} to='/contact' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Contact</Button>
 
+          <Button component={NavLink} to='/SignUp' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>SignUp</Button>
+
           <Button component={NavLink} to='/login' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Login/Registration</Button>
+
+         
 
 
 
@@ -33,18 +41,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-{/* <Box sx={{ flexGrow: 1 }}>
-<AppBar position="static" color="secondary">
-  <Toolbar>
-    <Typography variant='h5' component="div" sx={{ flexGrow: 1 }}>Geek-Shop</Typography>
-
-    <Button component={NavLink} to='/' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Home</Button>
-
-    <Button component={NavLink} to='/contact' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Contact</Button>
-
-    <Button component={NavLink} to='/login' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Login/Registration</Button>
-
-  </Toolbar>
-</AppBar>
-</Box> */}
