@@ -2,12 +2,18 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Row, FormGroup, Label, Input, Col, Button } from "reactstrap";
 import { useState } from "react";
+// import '../components/style.css'
 // import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const Signup = () => 
 {
+  const notify = () => toast.success("Registration Success",{
+    position: "top-center",
+  });
 
 const [name,setName]=useState("")
 const [email,setEmail]=useState("")
@@ -47,7 +53,7 @@ const [address,setAddr]=useState("")
 
   return (
     <>
-    <div style={{padding:"5%"}}>
+    <div className="signupdiv">
       <Form onSubmit={submitHandler}>
         <Row>
           <Col md={6}>
@@ -56,7 +62,7 @@ const [address,setAddr]=useState("")
               <Input
                 id="name"
                 name="name"
-                placeholder=""
+                placeholder="Enter Name"
                 type="text" 
                 onChange={(e) => setName(e.target.value)}
               />
@@ -68,7 +74,7 @@ const [address,setAddr]=useState("")
               <Input
                 id="email"
                 name="email"
-                placeholder=""
+                placeholder="Enter Email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -82,36 +88,13 @@ const [address,setAddr]=useState("")
               <Input
                 id="phone"
                 name="phone"
-                placeholder=""
+                placeholder="Enter Phone Number"
                 type="number"
                 onChange={(e) => setPhone(e.target.value)}
               />
             </FormGroup>
           </Col>
-          {/* <Col md={4}>
-            <FormGroup>
-              <Label for="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                placeholder="Type password"
-                type="password"
-                onChange={(e) => setPass(e.target.value)}
-              />
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="password">Confirm Password</Label>
-              <Input
-                id="password2"
-                name="password"
-                placeholder="Confirm Your password"
-                type="password"
-                onChange={(e) => setPass(e.target.value)}
-              />
-            </FormGroup>
-          </Col> */}
+          
         </Row>
         <FormGroup>
           <Label for="address">Address</Label>
@@ -124,7 +107,9 @@ const [address,setAddr]=useState("")
         </FormGroup>
        
         
-        <Button>Sign Up</Button>
+        <Button className="btn" onClick={notify}>Sign Up</Button>
+        <ToastContainer />
+
       </Form>
       </div>
     </>
