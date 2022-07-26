@@ -36,6 +36,28 @@ const Navbar = () => {
             >
               Posts
             </Button>
+            
+            <Button
+              component={NavLink}
+              to="/post/:id"
+              style={({ isActive }) => {
+                return { backgroundColor: isActive ? "#6d1b7b" : "" };
+              }}
+              sx={{ color: "white", textTransform: "none" }}
+            >
+              Post
+            </Button>
+
+            <Button
+              component={NavLink}
+              to="post/addpost"
+              style={({ isActive }) => {
+                return { backgroundColor: isActive ? "#6d1b7b" : "" };
+              }}
+              sx={{ color: "white", textTransform: "none" }}
+            >
+              Add Post
+            </Button>
 
             <Button
               component={NavLink}

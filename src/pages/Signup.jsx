@@ -3,17 +3,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Row, FormGroup, Label, Input, Col, Button } from "reactstrap";
 import { useState } from "react";
 // import '../components/style.css'
-// import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const Signup = () => 
 {
-  const notify = () => toast.success("Registration Success",{
-    position: "top-center",
-  });
+  // const notify = () => toast.success("Registration Success",{
+  //   position: "top-center",
+  // });
 
 const [name,setName]=useState("")
 const [email,setEmail]=useState("")
@@ -31,25 +30,26 @@ const [address,setAddr]=useState("")
     submitForm.append("email", email);
     submitForm.append("phone", phone);
     submitForm.append("address", address);
+    console.log(email);
 
-    
+  
 
-    fetch('https://jsonplaceholder.typicode.com/users', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: 'name',
-          email: 'email',
-          userId: 11,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+  
+    // try {
+    //   // make axios post request
+    //   const response = await axios({
+    //     method: "post",
+    //     url: "https://jsonplaceholder.typicode.com/posts",
+    //     data: submitForm,
+    //   });
+    //   console.log(response);
+    //   alert(response.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
+   
   }
-
 
   return (
     <>
@@ -107,7 +107,7 @@ const [address,setAddr]=useState("")
         </FormGroup>
        
         
-        <Button className="btn" onClick={notify}>Sign Up</Button>
+        <Button className="btn">Sign Up</Button>
         <ToastContainer />
 
       </Form>

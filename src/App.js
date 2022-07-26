@@ -7,6 +7,8 @@ import Login from './pages/Login'
 import LoginReg from './pages/LoginReg'
 import Users from './pages/Users'
 import Contact from './pages/contact/Contact'
+import Post from "./pages/Post";
+import AddPost from "./pages/AddPost";
 
 
 
@@ -23,6 +25,10 @@ function App() {
   <Route path="/" element={<Layout/>} >
     <Route index element={<Home/>} />
     <Route path="posts" element={<Posts/>} />
+    <Route path="post/:id" element={<Post/>} />
+    <Route path="post/addpost" element={<AddPost/>} />
+
+
     <Route path="signup" element={<Signup/>} />
     <Route path="login" element={<Login/>} />
 
