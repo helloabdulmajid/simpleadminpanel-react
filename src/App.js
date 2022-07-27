@@ -9,6 +9,8 @@ import Users from './pages/Users'
 import Contact from './pages/contact/Contact'
 import Post from "./pages/Post";
 import AddPost from "./pages/AddPost";
+import Edit from "./components/employee/Edit";
+import View from "./components/employee/View";
 
 
 
@@ -25,7 +27,7 @@ function App() {
   <Route path="/" element={<Layout/>} >
     <Route index element={<Home/>} />
     <Route path="posts" element={<Posts/>} />
-    <Route path="post/:id" element={<Post/>} />
+    <Route path="/user/post/:id" element={<Post/>} />
     <Route path="post/addpost" element={<AddPost/>} />
 
 
@@ -36,6 +38,10 @@ function App() {
 
     <Route path="contact" element={<Contact/>} />
     <Route path="loginreg" element={<LoginReg/>}/>
+    <Route path="/employee/edit/:id" element={<Edit/>}/>
+    <Route path="/employee/view/:id" element={<View/>}/>
+
+
   </Route>
 
 </Routes>

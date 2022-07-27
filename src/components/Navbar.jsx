@@ -36,10 +36,10 @@ const Navbar = () => {
             >
               Posts
             </Button>
-            
+
             <Button
               component={NavLink}
-              to="/post/:id"
+              to="/user/post/:id"
               style={({ isActive }) => {
                 return { backgroundColor: isActive ? "#6d1b7b" : "" };
               }}
@@ -91,7 +91,7 @@ const Navbar = () => {
             >
               SignUp
             </Button>
-            <Button 
+            <Button
               component={NavLink}
               to="/login"
               style={({ isActive }) => {
@@ -105,14 +105,13 @@ const Navbar = () => {
             {/* <Button component={NavLink} to='/loginreg' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Login/Registration</Button> */}
 
             <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" src="./assets/images/avatar1.jpg" />
+              <Avatar alt="Remy Sharp" src="./assets/images/avatar1.jpg" />
             </Stack>
-            
+
             {/* <Button component={NavLink} to='/' style={({ isActive }) => { return { backgroundColor : isActive ? '6d1b7b' : ''} }} sx={{color:'white'}}>Home</Button>
             <Button component={NavLink} to='/Contact'  sx={{color:'white'}}>Contact</Button>
             <Button component={NavLink} to='/contact' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Contact</Button> */}
           </Toolbar>
-          
         </AppBar>
       </Box>
     </>
