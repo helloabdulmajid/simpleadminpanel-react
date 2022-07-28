@@ -1,14 +1,19 @@
 {
-    "employee": [
-      {
-        "id": 1,
-        "empname": "tom",
-        "email": "tom@example.com"
-      },
-      {
-        "id": 3,
-        "empname": "jerry",
-        "email": "jerry@example.com"
-      }
-    ]
-  }
+  "employee": [
+    {
+      "empname": "Abdul Majid",
+      "email": "abdul@xigmapro.com",
+      "id": 1
+    },
+    {
+      "empname": "indra",
+      "email": "indra@example.com",
+      "id": 2
+    },
+    {
+      "empname": "suvadip",
+      "email": "suvadip@example.com",
+      "id": 3
+    }
+  ]
+}

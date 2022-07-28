@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
-  Button,
-  Grid,
-  TextField,
-  Tooltip,
+  IconButton,
   TableCell,
   TableRow,
   TableHead,
@@ -13,15 +10,34 @@ import {
   TableContainer,
   TableBody,
   Paper,
-  IconButton,
+  Tooltip,
 } from "@mui/material";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const List = () => {
+  const [emp, setEmp] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3333/employee").then((response) => {
+      // console.log(response);
+      setEmp(response.data);
+    });
+  }, []);
+
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3333/employee/${id}`);
+    var newemployee = emp.filter((item) => {
+      //  console.log(item);
+      return item.id !== id;
+    });
+    setEmp(newemployee);
+  };
+
   return (
     <>
       <Box
@@ -42,55 +58,36 @@ const List = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell align="center">1</TableCell>
-              <TableCell align="center">Am</TableCell>
-              <TableCell align="center">am@example</TableCell>
-              <TableCell align="center">
-                <Tooltip title="View">
-                  <IconButton>
-                    <Link to={`/employee/view/:id`}>
-                      <VisibilityIcon color="primary" />
-                    </Link>
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Edit">
-                  <IconButton>
-                    <Link to={`/employee/edit/:id`}>
-                      <EditIcon color="warning" />
-                    </Link>
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Delete">
-                  <IconButton>
-                    <DeleteIcon color="secondary" />
-                  </IconButton>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell align="center">1</TableCell>
-              <TableCell align="center">Am</TableCell>
-              <TableCell align="center">am@example</TableCell>
-              <TableCell align="center">
-                <Tooltip title="View">
-                  <IconButton>
-                    <VisibilityIcon color="primary" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Edit">
-                  <IconButton>
-                    <EditIcon color="warning" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Delete">
-                  <IconButton>
-                    <DeleteIcon color="secondary" />
-                  </IconButton>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
+            {emp.map((person, i) => {
+              return (
+                <TableRow key={i}>
+                  <TableCell align="center">{i + 1}</TableCell>
+                  <TableCell align="center">{person.empname}</TableCell>
+                  <TableCell align="center">{person.email}</TableCell>
+                  <TableCell align="center">
+                    <Tooltip title="View">
+                      <IconButton>
+                        <Link to={`/employee/view/${person.id}`}>
+                          <VisibilityIcon color="primary" />
+                        </Link>
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Edit">
+                      <IconButton>
+                        <Link to={`/employee/edit/${person.id}`}>
+                          <EditIcon color="warning" />
+                        </Link>
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Delete">
+                      <IconButton onClick={() => handleDelete(person.id)}>
+                        <DeleteIcon color="secondary" />
+                      </IconButton>
+                    </Tooltip>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

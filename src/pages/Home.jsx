@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 // import { Typography, Box, makeStyles, Grid, TextField, Button } from "@material-ui/core";
 // import { deepOrange,deepPurple ,green,red} from "@mui/material/colors";imp
 import List from "../../src/components/employee/List";
+import axios from "axios";
 
 const Home = () => {
+  const [emp, setEmp] = useState({
+    empname: "",
+    email: "",
+  });
+  const [status, setStatus] = useState();
+
+  function onTextFieldChange(e) {
+    setEmp({
+      ...emp,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function onFormSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.post(`http://localhost:3333/employee`, emp);
+      setStatus(true);
+    } catch (error) {
+      console.log("Something is Wrong");
+    }
+  }
+  if (status) {
+    return <Home />;
+  }
   return (
     <>
-      <h1>Home Page</h1>
-
       <Box
         sx={{ backgroundColor: "orange", color: "white" }}
         textAlign="center"
@@ -38,6 +62,7 @@ const Home = () => {
                   fullWidth
                   id="empname"
                   label="Name"
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -49,6 +74,7 @@ const Home = () => {
                   fullWidth
                   id="email"
                   label="Email Address"
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
             </Grid>
@@ -56,8 +82,9 @@ const Home = () => {
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 fullWidth
+                onClick={(e) => onFormSubmit(e)}
               >
                 Add
               </Button>

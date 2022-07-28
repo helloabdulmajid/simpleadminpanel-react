@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const Post = () => {
   const { id } = useParams();
   const [post, setPost] = useState([]);
-console.log('mmm',id);
+  console.log("mmm", id);
   useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -14,7 +14,7 @@ console.log('mmm',id);
         setPost(response.data);
         //   console.log(response.data.body)
       });
-  },[id]);
+  }, [id]);
 
   return (
     <>

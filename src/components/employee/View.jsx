@@ -3,9 +3,6 @@ import {
   Box,
   Typography,
   Button,
-  Grid,
-  TextField,
-  Tooltip,
   TableCell,
   TableRow,
   TableHead,
@@ -13,12 +10,23 @@ import {
   TableContainer,
   TableBody,
   Paper,
-  IconButton,
 } from "@mui/material";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const View = () => {
+  const { id } = useParams();
+  const [emp, setEmp] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3333/employee/${id}`).then((response) => {
+      console.log(response);
+      setEmp(response.data);
+    });
+  }, [id]);
+
   return (
     <>
       <Box textAlign="center" p={2}>
@@ -35,16 +43,16 @@ const View = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell align="center">IDdfgg</TableCell>
-              <TableCell align="center">Nameee</TableCell>
-              <TableCell align="center">Emailll</TableCell>
+              <TableCell align="center">{emp.id}</TableCell>
+              <TableCell align="center">{emp.empname}</TableCell>
+              <TableCell align="center">{emp.email}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
       <Box m={3} textAlign="center">
         <Link to={`/`}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="secondary">
             Back to Home
           </Button>
         </Link>

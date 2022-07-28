@@ -1,31 +1,54 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Grid,
-  TextField,
-  Tooltip,
-  TableCell,
-  TableRow,
-  TableHead,
-  Table,
-  TableContainer,
-  TableBody,
-  Paper,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const Edit = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [emp, setEmp] = useState({
+    empname: "",
+    email: "",
+  });
+  // const[status,setStatus]=useState();
+
+  useEffect(() => {
+    axios.get(`http://localhost:3333/employee/${id}`).then((response) => {
+      console.log(response);
+      setEmp(response.data);
+    });
+  }, [id]);
+
+  function onTextFieldChange(e) {
+    setEmp({
+      ...emp,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function onFormSubmit(e) {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3333/employee/${id}`, emp);
+      navigate("/");
+    } catch (error) {
+      console.log("Something is Wrong");
+    }
+  }
+
+  //  if (status) {
+  //   return <Home/>
+  //  }
+
   return (
     <>
       <Box
-        sx={{ backgroundColor: "green", color: "white" }}
         textAlign="center"
         p={2}
         mb={2}
+        sx={{ backgroundColor: "green", color: "white" }}
       >
         <Typography variant="h2">
           React CRUD with API Call (Employee)
@@ -54,32 +77,32 @@ const Edit = () => {
                   id="id"
                   label="ID"
                   autoFocus
-                  value="jhh"
+                  value={id}
                   disabled
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="stuname"
-                  name="stuname"
+                  autoComplete="empname"
+                  name="empname"
                   variant="outlined"
                   required
                   fullWidth
-                  id="stuname"
+                  id="empname"
                   label="Name"
-                  value="hhh"
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="email"
                   name="email"
                   variant="outlined"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  value="sfdfs"
+                  id="id"
+                  label="email"
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
             </Grid>
@@ -87,17 +110,17 @@ const Edit = () => {
               <Button
                 type="button"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 fullWidth
+                onClick={(e) => onFormSubmit(e)}
               >
-                {" "}
-                Update{" "}
+                Update
               </Button>
             </Box>
           </form>
           <Box m={3} textAlign="center">
             <Link to={`/`}>
-              <Button variant="contained" color="primary">
+              <Button type="button" variant="contained" color="secondary">
                 Back to Home
               </Button>
             </Link>
