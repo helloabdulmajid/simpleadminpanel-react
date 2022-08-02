@@ -11,6 +11,7 @@ import Post from "./pages/Post";
 import AddPost from "./pages/AddPost";
 import Edit from "./components/employee/Edit";
 import View from "./components/employee/View";
+import Dasboard from "./pages/Dasboard";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             <Route path="loginreg" element={<LoginReg />} />
             <Route path="/employee/edit/:id" element={<Edit />} />
             <Route path="/employee/view/:id" element={<View />} />
+            <Route path="login/dasboard" element={<Dasboard/>} />
+
           </Route>
         </Routes>
       </BrowserRouter>
